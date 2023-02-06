@@ -1,0 +1,2 @@
+FastPlannerOctomap
+-DCATKIN_DEVEL_PREFIX=/home/kaushal/Octomap_FastPlanner_simulation/fastplanner_ws/devel -DCMAKE_INSTALL_PREFIX=/home/kaushal/Octomap_FastPlanner_simulation/fastplanner_ws/install -G Unix Makefiles

@@ -1,0 +1,8 @@
+prefix=/home/kaushal/Octomap_FastPlanner_simulation/fastplanner_ws/devel
+
+Name: FastPlannerOctomap
+Description: Description of FastPlannerOctomap
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
