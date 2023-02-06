@@ -1,8 +1,5 @@
 # FastPlannerOctomap
 
-## Obstacle avoidance for drones using FastPlanner (https://github.com/HKUST-Aerial-Robotics/Fast-Planner), PX4 and Octomap.
-
-
 ## Modules
 
 *********
@@ -30,13 +27,11 @@
 
 >> sudo make install
 
-![](EDT_Map.png)
-
 #
 
 ### Planning
 * Path planning is done using Fast-Planner (https://github.com/HKUST-Aerial-Robotics/Fast-Planner) developed by HKUST Aerial Robotics Group.
-* Currently only the kino-dynamic A* star algorithm has been implemented (implementation of the Bspline optimization with octomap is going on currently)
+* Currently only the kino-dynamic A* star algorithm has been implemented.
 * Changes have been made in the source code in order to use it with Octomap.
 * Goal location is currently given in cartesian coordinates (using RViZ 2D Nav Goal and height of the goal is taken from the user)
 
@@ -64,33 +59,22 @@
 * GPS is used for localizing the drone 
 * Poses given by the EKF in PX4 is used (/mavros/local_position/pose)
 
-![](FastPlanner_OctomapAvoidance.gif) | ![](GardenAvoidance.gif)
-
-
 ***
-
-## Install and Run (Tested in ros melodic)
 ### building package
 * sudo apt-get install libeigen3-dev
 * mkdir catkin_ws
 * cd catkin_ws
 * mkdir src
 * cd src
-* git clone https://github.com/deepak-1530/FastPlannerOctomap
+* git clone https://github.com/kaushal07wick/Grene-Counter-Drone
 * cd ..
 * catkin_make
 
 ### Running the Planner
 #### Simulation
 * *Terminal-1* : cd PX4-Autopilot && sudo no_sim=1 make px4_sitl_gazebo
-* *Terminal-2* : cd PX4-Autpilot && source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default && roslaunch gazebo_ros empty_world.launch (set your world file as required). On the gazebo window, select iris_depth_camera from the left panel.
+* *Terminal-2* : cd PX4-Autpilot && source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
 * *Terminal-3* : cd catkin_ws && **roslaunch FastPlannerOctomap MappingSim.launch** (give goal location using 2D Nav Goal option)
 * *Terminal-4* : **rosrun FastPlannerOctomap Planner** (or noYawPlanner if you want to plan the trajectory keeping the heading or yaw of the drone fixed). For the startOver option select either 1 or 0. Refer to the source code (FastPlannerOctomap/src/kinodynamic_astar.cpp and Planner.cpp for details). Also give the height (in metres) of the goal location when prompted.
 * *Terminal-5* : **rosrun FastPlannerOctomap Controller**
 
-#### Running on hardware
-* *Terminal-1* : Launch the depth camera (I used realsense_ros package and rs_camera.launch file)
-* *Terminal-2* : roslaunch mavros px4.launch 
-* *Terminal-3* : roslaunch FastPlannerOctomap MappingDrone.launch
-* Running the planner and controller remain the same as in simulation.
-* Remote Desktop is used to run rviz and give the goal location.
