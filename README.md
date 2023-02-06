@@ -1,5 +1,4 @@
-# Grene-Counter-Drone
-# FastPlanner using Octomap 
+# Grene-Counter-Drone using FastPlanner and Octomap
 
 Download mavros, mavlink and Px4-Autopilot from their respective Github repo
 
@@ -12,10 +11,10 @@ All folder(workspaces) are in /home directory
   Contains mavros
   
 3. fastplanner_ws\
-  Contains mapping, planning and controller
+  Contains mapping, planning and controller nodes
 
 
-## How To Run Simulation
+## Running the Simulation
 
 ### Terminal 1:-
 ```bash
@@ -28,15 +27,12 @@ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
 roslaunch px4 mavros_posix_sitl.launch
 ```
 
-In same terminal type
+In the same terminal type
 ```bash
-commander takeoff
+pxh> commander takeoff
 ```
 
-It will launch Gazebo, World, Mavros, PX4, Quadcopter(iris_depth_camera)\
-You can choose world from PX4-Autopilot/Tools/sitl_gazebo/worlds\
-Choose quadcopter from PX4-Autopilot/Tools/sitl_gazebo/models\
-Make changes into mavros_posix_sitl.launch
+It will launch Gazebo, World, Mavros, PX4, Quadcopter(iris_depth_camera)
 
 ### Terminal 2:-
 ```bash
@@ -44,7 +40,7 @@ cd fastplanner_ws/
 source devel/setup.bash
 roslaunch FastPlannerOctomap MappingSim.launch
 ```
-Give goal location using 2D Nav Goal option in rviz
+Give goal location using 2D Nav Goal option in  the rviz
 
 ### Terminal 3:-
 ```bash
@@ -61,11 +57,3 @@ cd fastplanner_ws/
 source devel/setup.bash
 rosrun FastPlannerOctomap Controller
 ```
-### Simulation demo:-
-<img src="https://github.com/Garuda-IIITH-RRC/Octomap_FastPlanner_simulation/blob/main/fast_sim.gif" width="1000" height="300">
-
-### Youtube Link:-
-
-[![](https://img.youtube.com/vi/xpzdZVvVE0Y/0.jpg)](https://www.youtube.com/watch?v=xpzdZVvVE0Y)
-
-Reference:- https://github.com/deepak-1530/FastPlannerOctomap
